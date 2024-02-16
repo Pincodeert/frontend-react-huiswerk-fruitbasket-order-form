@@ -1,0 +1,160 @@
+/* Table of Contents
+   1.Global Styles
+   2.Typography
+   3.Layout
+        3.1 Reusables
+        3.2 Other
+   4.Areas
+        4.1 Header
+        4.2 Order Section
+        4.3 Form Section
+   5.Media Queries
+  ////////////////////////////*/
+
+/*     ------------------ 1. Global Styles ----------------------------*/
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*      ------------------ 2. Typography ------------------------------*/
+body {
+    font-family: "Sans Serif Collection";
+    font-size: 30px;
+}
+
+/*      ------------------ 3. Layout -------------------------------------*/
+
+/*      -------- 3.1 Reusables --------------------------------------*/
+
+.outer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*align-items: center;*/
+
+    border: 2px dotted plum;
+}
+
+.inner-container {
+    flex-basis: 1300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+    padding: 50px 10px;
+    border: 2px solid aqua;
+}
+
+
+/*      ------------ 3.2 Others -------------------------------*/
+
+input {
+    width: 40px;
+    text-align: end;
+    border: none;
+    font-size: 20px;
+    disabled: true;
+
+
+}
+
+button {
+    background-color: #b3b2b2;
+    width: 40%;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.product button {
+    width: auto;
+    margin: 0 8px;
+    padding: 6px 10px;
+    background-color: lightgray;
+    font-size: 16px;
+    border-radius: 2px;
+    border-color: grey;
+}
+
+/*      ----------------------------- 4 Area's ------------------*/
+
+/*      ---------- 4.1 Header ----------------*/
+
+.header-section {
+    background-color: navajowhite;
+}
+
+/*      ----------- 4.2 Order Section ----------------*/
+
+.order-section {
+    background-color: antiquewhite;
+
+}
+
+.order-section span {
+    width: 10px;
+    heigt: 10px;
+    border: 1px dotted rebeccapurple;
+}
+
+.product {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    width: 40%;
+    padding: 4px 8px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 15px 0;
+    background-color: #fbf9f9;
+}
+
+/*      ---------- 4.3 Form Section -------------------*/
+
+.form-section {
+    background-color: floralwhite;
+}
+
+input {
+    margin-left: 20px;
+    width: 400px;
+    height: 30px;
+}
+
+.time-of-day input{
+    width: 20px;
+    height: 20px;
+    margin: 0 20px;
+}
+
+.form-section button {
+    width: 20%;
+}
+
+.terms {
+    width: 30px;
+    heigth: 30px;
+    margin: 0 10px 0 0;
+    padding-bottom: 0;
+
+}
+
+.remarks {
+    display: flex;
+    flex-direction: column;
+}
+.form-section .inner-container {
+    flex-basis: 600px;
+    align-items: flex-start;
+}
+
+select {
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+}
