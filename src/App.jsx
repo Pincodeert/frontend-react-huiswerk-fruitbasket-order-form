@@ -3,6 +3,11 @@ import './App.css'
 
 import logo from './assets/screenshot-logo.png';
 import React from "react";
+import Counter from "./components/Counter.jsx";
+import InputItem from "./components/InputItem.jsx";
+import RadioButton from "./components/RadioButton.jsx";
+import Button from "./components/Button.jsx";
+
 
 function App() {
 
@@ -31,11 +36,9 @@ function App() {
   function handleSubmit(e) {
         e.preventDefault();
         console.log(`Voornaam: ${firstname}, Achternaam: ${lastname}, Leeftijd: ${age}, Postcode: ${postalcode}, 
-        Bezorgfrequentie: ${frequency}, Opmerkingen: ${remarks}, Algemene Voorwaarden: ${terms}`);
+        Bezorgfrequentie: ${frequency}, Bezorgtijd: ${timeOfDay}, Opmerkingen: ${remarks}, Algemene Voorwaarden: ${terms}`);
         console.log(`Bestelling: aardbeien: ${strawberries}, bananen: ${bananas}, appels: ${apples}, kiwi's: ${kiwis}`);
   }
-
-
 
   return (
     <>
@@ -48,107 +51,82 @@ function App() {
         <main>
             <section className="outer-container order-section">
                 <div className="inner-container">
-                    <article className="product">
-                        <h2>&#127827; Aardbeien</h2>
-                        <button type="button" disabled={strawberries === 0}
-                                onClick={() => setStrawberries(strawberries - 1)}>
-                            -
-                        </button>
 
-                        <p>{strawberries}</p>
-                        <button type="button" disabled={strawberries === 10}
-                                onClick={() => setStrawberries(strawberries + 1)}>
-                            +
-                        </button>
-                    </article>
-                    <article className="product">
-                        <h2>&#127820; Bananen</h2>
-                        <button type="button" disabled={bananas === 0} onClick={() => setBananas(bananas - 1)}>
-                            -
-                        </button>
-                        <p>{bananas}</p>
-                        <button type="button" onClick={() => setBananas(bananas + 1)}>
-                            +
-                        </button>
-                    </article>
-                    <article className="product">
-                        <h2>&#127822; Appels</h2>
-                        <button type="button" disabled={apples === 0} onClick={() => setApples(apples - 1)}>
-                            -
-                        </button>
-                        <p>{apples}</p>
-                        <button type="button" onClick={() => setApples(apples + 1)}>
-                            +
-                        </button>
-                    </article>
-                    <article className="product">
-                        <h2>&#129373; Kiwi's</h2>
-                        <button type="button" disabled={kiwis === 0} onClick={() => setKiwis(kiwis - 1)}>
-                            -
-                        </button>
-                        <p>{kiwis}</p>
-                        <button type="button" onClick={() => setKiwis(kiwis + 1)}>
-                            +
-                        </button>
-                    </article>
-                    <button type="reset" onClick={resetFruit}>
-                        Reset
-                    </button>
+                    <Counter
+                        title="&#127827; Aardbeien"
+                        amount={strawberries}
+                        setAmount={setStrawberries}
+                    />
+                    <Counter
+                        title="&#127820; Bananen"
+                        amount={bananas}
+                        setAmount={setBananas}
+                    />
+                    <Counter
+                        title="&#127822; Appels"
+                        amount={apples}
+                        setAmount={setApples}
+                    />
+                    <Counter
+                        title="&#129373; Kiwi's"
+                        amount={kiwis}
+                        setAmount={setKiwis}
+                    />
+                    <Button
+                        type="reset"
+                        clickHandler={resetFruit}
+                    >
+                    Reset
+                    </Button>
                 </div>
             </section>
             <section className="outer-container form-section">
                 <form onSubmit={handleSubmit} className="inner-container">
+
                     <section>
-                        <label htmlFor="firstname-field">
-                        Voornaam
-                        <input
+                        <InputItem
+                            label="Voornaam"
                             type="text"
                             id="firstname-field"
                             name="firstname"
                             value={firstname}
-                            onChange={(e) => setFirstname(e.target.value)}
+                            changeHandler={setFirstname}
                         />
-                        </label>
                     </section>
-                        
+
                     <section>
-                        <label htmlFor="lastname-field">
-                        Achternaam
-                        <input
+                        <InputItem
+                            label="Achternaam"
                             type="text"
                             id="lastname-field"
                             name="lastname"
                             value={lastname}
-                            onChange={(e) => setLastname(e.target.value)}
+                            changeHandler={setLastname}
                         />
-                        </label>
                     </section>
                         
                     <section>
-                        <label htmlFor="age-field" min="18">
-                        Leeftijd
-                        <input 
-                            type="number" 
+                        <InputItem
+                            label="Leeftijd"
+                            type="number"
                             id="age-field"
                             name="age"
                             value={age}
-                            onChange={(e) => setAge(e.target.value)}
+                            changeHandler={setAge}
                         />
-                        </label>
                     </section>
 
                     <section>
-                        <label htmlFor="postalcode-field">
-                        Postcode
-                        <input 
-                            type="text" 
+                        <InputItem
+                            label="Postcode"
+                            type="text"
                             id="postalcode-field"
                             name="postalcode"
                             value={postalcode}
-                            onChange={(e) => setPostalcode(e.target.value)}
+                            changeHandler={setPostalcode}
                         />
-                        </label>
                     </section>
+
                     <section>
                         <label htmlFor="frequency-field">
                         Bezorgfrequentie
@@ -165,32 +143,29 @@ function App() {
                             <option value="fortnightly">Om de week</option>
                             <option value="monthly">Iedere maand</option>
                         </select>
-                    </section>    
-                    
+                    </section>
 
                     <section className="time-of-day">
-                        <label htmlFor="day-field">
-                        <input
+                        <RadioButton
+                            label="Overdag"
                             type="radio"
+                            id="day-field"
                             name="time-of-day"
                             value="day-time"
-                            id="day-field"
                             checked={timeOfDay === "day-time"}
-                            onChange={(e) => toggleTimeOfDay(e.target.value)}
+                            changeHandler={toggleTimeOfDay}
                         />
-                        Overdag
-                        </label>
-                        <label htmlFor="evening-field">
-                        <input
+
+                        <RadioButton
+                            label="'s Avonds"
                             type="radio"
+                            id="day-field"
                             name="time-of-day"
                             value="evening"
-                            id="evening-field"
                             checked={timeOfDay === "evening"}
-                            onChange={(e) => toggleTimeOfDay(e.target.value)}
+                            // checked="evening"
+                            changeHandler={toggleTimeOfDay}
                         />
-                        's Avonds
-                        </label>
                     </section>
 
                     <section className="remarks">
@@ -207,6 +182,7 @@ function App() {
                         >
                         </textarea>
                     </section>
+
                     <section>
                         <label htmlFor="terms-and-condition-field">
                         <input
@@ -214,13 +190,19 @@ function App() {
                             type="checkbox"
                             id="terms-and-condition-field"
                             name="terms"
-                            value={remarks}
+                            value={terms}
                             onChange={(e) => toggleTerms(e.target.checked)}
                         />
                         Ik ga akkoord met de voorwaarden
                         </label>
                     </section>
-                    <button type="submit" >Verzend</button>
+
+                    <Button
+                        type="submit"
+                    >
+                    Verzenden
+                    </Button>
+
                     </form>
 
             </section>
